@@ -40,9 +40,88 @@ Hamburger menu is UITGEKLAPT.
 https://tom-toolgankelijk.student.fdnd.nl/
 
 ## Kenmerken
-<!-- Bij Kenmerken staat welke technieken zijn gebruikt en hoe. Wat is de HTML structuur? Wat zijn de belangrijkste dingen in CSS? Wat is er met JS gedaan en hoe? -->
 
+### Hamburger menu
 
+Door middel van een eventListener wacht ik voor een click event op de hamburger menu button. Deze bevat een aria-expanded attribuut.
+Als blijkt dat deze false is, betekent het dat het hamburger icoontje in een kruisje moet veranderen en visa versa wat door CSS wordt afgehandeld.
+Daarnaast toggled dit event een "open" class op de navigatie, die overigens hetzelfde element is als op de desktop versie.
+
+```js
+const hamburgerButton = document.querySelector("#navigation button");
+
+hamburgerButton.addEventListener("click", function() {
+    const isOpened = hamburgerButton.getAttribute('aria-expanded');
+    if (isOpened === "false") {
+        hamburgerButton.setAttribute("aria-expanded", "true");
+    } else {
+        hamburgerButton.setAttribute("aria-expanded", "false");
+    }
+
+    document.querySelector("#navigation #top-nav").classList.toggle("open");
+    document.body.classList.toggle("stop-scroll");
+});
+```
+
+```css
+#hamburger-icon .line {
+    transition: 
+    y 200ms ease-in 200ms,
+    rotate 200ms ease-in,
+    opacity 0ms 200ms,
+    fill 200ms;
+    transform-origin: center;
+}
+
+#hamburger-icon[aria-expanded="true"] .line {
+    transition: 
+    y 200ms ease-in,
+    rotate 200ms ease-in 200ms,
+    opacity 0ms 200ms,
+    fill 200ms;
+    fill: var(--c-huisstijl-magenta-plain);
+}
+
+#hamburger-icon[aria-expanded="true"] :is(.top, .bottom) {
+    y: 45px;
+}
+
+#hamburger-icon[aria-expanded="true"] .top {
+    rotate: 45deg;
+}
+
+#hamburger-icon[aria-expanded="true"] .middle {
+    opacity: 0;
+}
+
+#hamburger-icon[aria-expanded="true"] .bottom {
+    rotate: -45deg;
+}
+```
+
+### Progressie per principe
+
+Een voorbeeld van de code voor het eerste principe: Waarneembaar.
+Met daarbij comments ter verheldering.
+
+```js
+checkboxesWaarneembaar.forEach(function (checkbox) {
+    //vul de Array met de huidige checkbox vanuit de DOM
+    waarneembaarChecklistCheckboxes.push(checkbox);
+    //verander de checked waarde van de checkboxes aan de hand van de bijbehorende value (uit de localStorage of standaard false)
+    checkboxesWaarneembaar[waarneembaarChecklistCheckboxes.indexOf(checkbox)].checked = waarneembaarChecklistValues[waarneembaarChecklistCheckboxes.indexOf(checkbox)];
+    checkbox.addEventListener("change", function () {
+        //verander de progressie van het principe aan de hand van de (handmatig) aangevinkte checkboxes
+        changeProgression(checkbox, this.closest(".richtlijnen").parentElement.id);
+        //pas de bijbehorende value aan aan de hand van de huidige checkox value
+        waarneembaarChecklistValues[waarneembaarChecklistCheckboxes.indexOf(checkbox)] = checkbox.checked;
+        //maak of verander de localStorage met de actuele values
+        localStorage.setItem("waarneembaarProgression", JSON.stringify(waarneembaarChecklistValues));
+    });
+    //verander de progressie van het principe aan de hand van de (automatisch) aangevinkte checkboxes
+    changeProgression(checkbox, checkbox.closest(".richtlijnen").parentElement.id);
+});
+```
 
 ## Licentie
 
