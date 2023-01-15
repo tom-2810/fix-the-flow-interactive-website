@@ -19,11 +19,6 @@ Als mobiele gebruiker wil ik door middel van een hamburger-menu, alsnog toegang 
 
 ![20221214_112206](https://user-images.githubusercontent.com/112861614/207584480-b240a354-7bef-414b-9e39-14bffe3b63bd.jpg)
 
-## Testen
-
-Naar aanleiding van mijn wireflow te tonen, heb ik wat feedback ontvangen. Het was namelijk nog niet duidelijk dat het menu van boven naar beneden opent.
-Dit heb ik opgelost door bij het eerste scherm een blauwe lijn bovenaan te tekenen en bij het tweede scherm onderaan. Dit suggereert dat het menu uitgeklapt is. Ook kreeg ik terug dat er nog wat meer toelichting bij moest, wat ik heb toegevoegd achter een i-icoontje.
-
 ## Beschrijving
 Door de links en instellingen van de desktop versie ook op mobiel mogelijk te maken, heb ik een hamburger-menu toegepast.
 Deze wordt pas weergegeven als de resolutie breedte kleiner of gelijk is aan 550px.
